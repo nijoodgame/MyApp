@@ -16,7 +16,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const connectString ="mongodb+srv://admin:123admin@postitcluster.mvjg2pt.mongodb.net/postITDb?appName=PostITCluster";
+const MONGO_URI ="mongodb+srv://admin:123admin@postitcluster.mvjg2pt.mongodb.net/postITDb?appName=PostITCluster";
+
+mongoose.connect(MONGO_URI, {
+  serverSelectionTimeoutMS: 10000,
+  retryWrites: false,
+  ssl: true
+});
+
 
 const storege = multer.diskStorage({
   destination:(req,file,cb)=>{
@@ -33,10 +40,7 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 
 
 
-mongoose.connect(connectString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+
 
 app.post("/registerUser", async (req,res)=>{
     try{
