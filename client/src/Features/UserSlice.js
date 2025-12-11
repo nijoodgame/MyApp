@@ -13,7 +13,7 @@ export const registerUser=createAsyncThunk(
     "users/registerUser",
     async(UserData)=>{
         try{
-            const response= await axios.post("http://localhost:3001/registerUser",{
+            const response= await axios.post("https://myapp-ve6q.onrender.com/registerUser",{
                 name:UserData.name,
                 email:UserData.email,
                 password:UserData.password,
@@ -29,7 +29,7 @@ export const registerUser=createAsyncThunk(
 
 export const login = createAsyncThunk("users/login", async (userData) => {
   try {
-    const response = await axios.post("http://localhost:3001/login", {
+    const response = await axios.post("https://myapp-ve6q.onrender.com/login", {
       email: userData.email,
       password: userData.password,
     });
@@ -46,7 +46,7 @@ export const login = createAsyncThunk("users/login", async (userData) => {
 
 export const logout=createAsyncThunk("/users/logout",async () => {
   try {
-    const response = await axios.post("http://localhost:3001/logout");
+    const response = await axios.post("https://myapp-ve6q.onrender.com/logout");
   } catch (error) {}
 });
 
@@ -57,7 +57,7 @@ export const updateUserProfile = createAsyncThunk(
     try {
       
       const response = await axios.put(
-        `http://localhost:3001/updateUserProfile/${userData.email}`, 
+        `https://myapp-ve6q.onrender.com/updateUserProfile/${userData.email}`, 
         {
           email: userData.email,
           name: userData.name,
